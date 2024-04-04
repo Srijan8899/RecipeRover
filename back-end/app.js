@@ -3,15 +3,41 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const expressSession = require("express-session");
+const flash = require("connect-flash");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const passport = require("passport");
 
 var app = express();
 
+//to handle cros(cross origin)
+app.use((req, res, next)=>{
+  res.setHeader("Access-Control-Allow-Origin", "http://localhos:3000");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+})
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
+
+app.use(expressSession({
+  resave:false,
+  saveUninitialized:false,
+  secret:"hello"
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.serializeUSer(usersRouter.serializeUser());
+passport.deserializeUser(usersRouter.deserializeUser());
+
+app.use(flash());
 
 app.use(logger('dev'));
 app.use(express.json());

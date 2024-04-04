@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {Link} from "react-router-dom";
+
 function Signup({ onLogin }) {
   
   const [username, setUsername] = useState('');
@@ -10,11 +11,28 @@ function Signup({ onLogin }) {
     // For simplicity, I'm just passing the username to the parent component
     onLogin(username);
   };
+
+  //To handle backend on submit
+  const [credentials, setCredentials] =useState({fullname:"", email:"", password:""})  
+  const handelSubmit= async(e)=>{
+    e.preventDefault();
+    const response = await fetch("http://localhost:3000/", {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({fullname:credentials.name, email:credentials.email, password:credentials.password})
+    });
+    const json= await response.json()
+    console.log(json);
+  }
+
+
   return (
     <div className="w-full h-screen flex font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]">
         <div className="flex w-full lg:w-1/2 justify-center items-center bg-[#5e968b] space-y-8 text-[#466e66] font-['Neue_Montreal']">
             <div className="w-full px-8 md:px-32 lg:px-24">
-            <form className="bg-[#F8FAE5] rounded-md shadow-4xl p-5">
+            <form onSubmit={handelSubmit} className="bg-[#F8FAE5] rounded-md shadow-4xl p-5">
               <h1 className="text-[#43766C] font-[600] text-4xl mb-3">Hello There!</h1>
               <p className="text-2xl font-light text-[#43766C] mb-8">Welcome to our website</p>
               <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
@@ -27,7 +45,7 @@ function Signup({ onLogin }) {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                 </svg>
-                <input id="email" className="bg-[#F8FAE5] text-xl pl-2 w-full outline-none border-none" type="email" name="email" placeholder="Email Address" />
+                <input id="email" className="bg-[#F8FAE5] text-xl pl-2 w-full outline-none border-none" type="email" name="email"  placeholder="Email Address" />
               </div>
               <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl ">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">

@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './Layout.jsx'
-import LandingPage from './components/LandingPage.jsx'
-import Login from './components/Login/Login.jsx'
-import Signup from './components/Signup/Signup.jsx'
+import LandingPage from './pages/LandingPage.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
+import Fetch from './components/Fetch.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +16,7 @@ const router = createBrowserRouter([
     {path: "", element: <LandingPage/>},
     {path: "login", element: <Login/>},
     {path: "signup", element: <Signup/>},
+    {path: "fetch", element: <Fetch/>},
     
   ]
 

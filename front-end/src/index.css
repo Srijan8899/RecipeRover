@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Founders Grotesk X Condensed';
+    src: local('Founders Grotesk X Condensed'), url(./fonts/FoundersGroteskXCond-Lt.otf) format('opentype');
+  }
+
+@font-face {
+    font-family: 'Neue Montreal';
+    src: local('Neue Montreal'), url(./fonts/NeueMontreal-Regular.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Founders Grotesk X Condensed Bold';
+    src: local('Founders Grotesk X Condensed Bold'), url(./fonts/FoundersGroteskXCond-Bold.otf) format('opentype');
+  }

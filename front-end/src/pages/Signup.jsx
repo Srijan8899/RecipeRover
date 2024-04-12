@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Signup({ onLogin }) {
   
@@ -12,20 +12,41 @@ function Signup({ onLogin }) {
     onLogin(username);
   };
 
+  const [formData, setFormData] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+  // };
+
   //To handle backend on submit
-  const [credentials, setCredentials] =useState({fullname:"", email:"", password:""})  
-  const handelSubmit= async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/", {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify({fullname:credentials.name, email:credentials.email, password:credentials.password})
-    });
-    const json= await response.json()
-    console.log(json);
-  }
+    if (!formData.username || !formData.email || !formData.password) {
+      return setErrorMessage('Please fill out all fields.');
+    }
+    try {
+      setLoading(true);
+      setErrorMessage(null);
+      const res = await fetch('/api/auth/signup', {       //need to check 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        return setErrorMessage(data.message);
+      }
+      setLoading(false);
+      if(res.ok) {
+        navigate('/sign-in');
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-full h-screen flex font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]">
@@ -69,7 +90,13 @@ function Signup({ onLogin }) {
             <Link to="/login" className="absolute flex items-center justify-center mt-20">
             <button className="absolute flex items-center justify-center border rounded-2xl px-10 pb-6 text-4xl pt-6 leading-[.6] bg-[#43766C] uppercase tracking-tight font-['Neue_Montreal']">Login</button> </Link>
         </div></div>
-        
+
+        {errorMessage && (
+            <Alert className='mt-5' color='failure'>
+              {errorMessage}
+            </Alert>
+          )}
+
     </div>
   )
 }

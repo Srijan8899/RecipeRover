@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Signup({ onLogin }) {
   
@@ -15,12 +15,11 @@ function Signup({ onLogin }) {
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const handleChange = (e) => {
   //   setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   // };
 
-<<<<<<< HEAD:front-end/src/components/Signup/Signup.jsx
   //To handle backend on submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +29,7 @@ function Signup({ onLogin }) {
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch('/api/auth/signup', {       //need to check 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -49,8 +48,6 @@ function Signup({ onLogin }) {
     }
   };
 
-=======
->>>>>>> 6f1f0895d99b7986421ba2a1da2d479000826e32:front-end/src/pages/Signup.jsx
   return (
     <div className="w-full h-screen flex font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]">
         <div className="flex w-full lg:w-1/2 justify-center items-center bg-[#5e968b] space-y-8 text-[#466e66] font-['Neue_Montreal']">
@@ -93,7 +90,13 @@ function Signup({ onLogin }) {
             <Link to="/login" className="absolute flex items-center justify-center mt-20">
             <button className="absolute flex items-center justify-center border rounded-2xl px-10 pb-6 text-4xl pt-6 leading-[.6] bg-[#43766C] uppercase tracking-tight font-['Neue_Montreal']">Login</button> </Link>
         </div></div>
-        
+
+        {errorMessage && (
+            <Alert className='mt-5' color='failure'>
+              {errorMessage}
+            </Alert>
+          )}
+
     </div>
   )
 }

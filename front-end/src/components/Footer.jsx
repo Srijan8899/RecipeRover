@@ -1,10 +1,11 @@
 import React from 'react'
+import Logo from '../assets/logo.png'
 
 function Footer() {
   return (
     <div className="text-center py-5 bg-[#43766C] text-[#F8FAE5]">
     <a href="#" className="flex items-center justify-center mb-5 text-2xl font-semibold ">
-        <img src="logo.png" className="h-12 mr-3 sm:h-9" alt="Logo"/>
+        <img src={Logo} className="h-12 mr-3 sm:h-9" alt="Logo"/>
 		Recipe Rover
     </a>
 

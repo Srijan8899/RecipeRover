@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import {Link, NavLink} from "react-router-dom";
+import Logo from '../assets/logo.png'
 
 const Header = () => {
   const [isHidden, setIsHidden] = useState(false);
@@ -25,7 +26,7 @@ const Header = () => {
     <nav style={{ display: isHidden ? 'none' : 'block'  }}>
     <div  className="fixed z-[5] w-full px-12 flex justify-between items-center backdrop-blur-[3px] text-[#F8FAE5]">
       <div className="logo flex gap-5">
-       <img src="./src/assets/logo.png" alt="logo"  className="bg-transparent object-scale-down w-20 py-3"/>
+       <img src={Logo} alt="logo"  className="bg-transparent object-scale-down w-20 py-3"/>
        {/* <img src="./src/assets/recipe-rover.png" alt="logo" className="bg-transparent object-scale-down w-48" /> */}
       </div>
       <div className="links flex gap-5 py-10 ml-56">

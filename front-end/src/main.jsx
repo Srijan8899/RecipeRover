@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import Fetch from './components/Fetch.jsx'
+import Cuisines from './pages/Categories/Cuisines.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     {path: "login", element: <Login/>},
     {path: "signup", element: <Signup/>},
     {path: "fetch", element: <Fetch/>},
+    {path: "categories/cuisines", element: <Cuisines/>},
     
   ]
 

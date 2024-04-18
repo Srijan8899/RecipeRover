@@ -18,34 +18,42 @@ function Cuisines() {
         {
             image: Indian,
             title: 'Indian',
+            link : "/categories/cuisine/indian"
         },
         {
             image: Chinese,
             title: 'Chinese',
+            link : "/categories/cuisine/chinese"
         },
         {
             image: Italian,
             title: 'Italian',
+            link : "/categories/cuisine/italian"
         },
         {
             image: American,
             title: 'American',
+            link : "/categories/cuisine/american"
         },
         {
             image: British,
             title: 'British',
+            link : "/categories/cuisine/british"
         },
         {
             image: French,
             title: 'French',
+            link : "/categories/cuisine/french"
         },
         {
             image: Spanish,
             title: 'Spanish',
+            link : "/categories/cuisine/spanish"
         },
         {
             image: Mexican,
             title: 'Mexican',
+            link : "/categories/cuisine/mexican"
         },
     ]
 
@@ -56,8 +64,8 @@ function Cuisines() {
         <div className="inset-0 relative flex flex-col ">
         <h1 className=" uppercase text-[15vh] flex items-end justify-center mt-10 z-3 font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-none -mb-[.6vw]"> Cuisines </h1>
         <div className="mx-12 grid my-2 grid-cols-3 gap-1 lg:grid-cols-4 ">
-        {Categories.map(({image, title},index) => (
-            <Cards key={index} image={image} name={title}/>
+        {Categories.map(({image, title, link},index) => (
+            <Cards key={index} image={image} name={title} link={link}/>
         ))
         
         }   

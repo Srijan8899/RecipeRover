@@ -6,6 +6,12 @@ import Logo from '../assets/logo.png'
 const Header = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
+  const links = [
+    {name: "Home", path: "/"},
+    {name: "Post Recipes", path: "/postrecipe"},
+    {name: "Community", path: "/community"},
+    {name: "Recipe Books", path: "/recipebooks"},
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,11 +36,10 @@ const Header = () => {
        {/* <img src="./src/assets/recipe-rover.png" alt="logo" className="bg-transparent object-scale-down w-48" /> */}
       </div>
       <div className="links flex gap-5 py-10 ml-56">
-        {["Home", "Search recipes", "Community", "Recipe books"].map((item,index) => (
-          <NavLink to='/' key={index} className={({isActive}) => `text-lg font-light font-['Neue_Montreal']`}>{item}</NavLink>
+        {links.map(({name, path}, index) => (
+          <NavLink to={path} key={index} className={({isActive}) => `text-lg font-light font-['Neue_Montreal'] ${isActive? "underline" : ""} `}>{name}</NavLink>
         ))}
 
-      {/* ${isActive? "underline" : ""}  for underline if active*/} 
       </div>
       <Link to="/login">
       <div className="button -mt-2 border rounded-xl p-4 uppercase text-sm leading-[.6] bg-[#43766C]"> Login/ Signup</div></Link>

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 
-
 function Login({ onLogin }) {
   
   const [email, setemail] = useState('');
@@ -39,6 +38,11 @@ function Login({ onLogin }) {
         console.error('Error:', error);
     }
 };
+
+//google login button function
+const loginwithgoogle = ()=>{
+  window.open("http://localhost:5173/auth/google/callback","_self")
+}
   
   return (
     <div className="w-full h-screen flex font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]">

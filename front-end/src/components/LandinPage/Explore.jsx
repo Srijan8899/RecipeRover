@@ -69,7 +69,7 @@ function Explore() {
     { 
         image:Upload,
         name:"Upload Your's",
-        link: "/upload",
+        link: "/postrecipe",
     },
     { 
         image:Favorites,
@@ -83,7 +83,7 @@ function Explore() {
         <h1 className="text-4xl flex text-center items-center justify-center pt-16 font-bold">
             Your everyday question of what to cook today will be answered here.
         </h1>
-        <Search />
+        <Search currentpage="home" id="search" />
         <h2 className="pt-16 text-3xl flex items-center justify-center font-bold uppercase"> Browse from categories..</h2>
         <div className="p-5 grid my-5 grid-cols-3 gap-4 lg:grid-cols-4 ">
         {Categories.map(({image, name, link},index,) => (

@@ -6,11 +6,12 @@ import Layout from './Layout.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
-import Fetch from './components/Fetch.jsx'
-import Cuisines from './pages/Categories/Cuisines.jsx'
 import RecipeDisplay from './pages/RecipeDisplay.jsx'
+import Cuisines from './pages/Categories/Cuisines.jsx'
+import RecipeDetails from './pages/RecipeDetails.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import PostRecipe from './pages/PostRecipe.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,9 +23,11 @@ const router = createBrowserRouter([
     {path: "login", element: <Login/>},
     {path: "signup", element: <Signup/>},
     {path: "contact", element: <ContactPage/>},
-    {path: "fetch/:id", element: <Fetch/>},
+    {path: "fetch/:id", element: <RecipeDetails/>},
     {path: "categories/cuisines", element: <Cuisines/>},
     {path: "categories/:type/:category", element: <RecipeDisplay/>},
+    {path: "search/:type/:category", element: <RecipeDisplay/>},
+    {path: "/postrecipe", element: <PostRecipe/>}
   ]
   }
   ])

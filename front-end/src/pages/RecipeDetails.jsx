@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function Fetch() {
+function RecipeDetails() {
   const { id } = useParams();
-
   const [details, setDetails] = useState({});
 
   useEffect(() => {
@@ -51,7 +50,7 @@ function Fetch() {
                 {/* <h2 dangerouslySetInnerHTML={{ __html:details.summary}}/> */}
                 {details.analyzedInstructions &&
                   details.analyzedInstructions.map((instruction, index) => (
-                    <ul className="list-disc ">
+                    <ul className="list-disc" key={index}>
                       {instruction.steps.map((step) => (
                         <li key={step.number} className="ml-4">
                           {step.step}
@@ -68,4 +67,4 @@ function Fetch() {
   );
 }
 
-export default Fetch;
+export default RecipeDetails;

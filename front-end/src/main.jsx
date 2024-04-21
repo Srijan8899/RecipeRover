@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Layout from './Layout.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import Login from './pages/Login.jsx'
@@ -17,7 +17,7 @@ import Reveal from './components/Reveal.jsx'
 const router = createBrowserRouter([
   {
   path: '/' , 
-  element: <Layout/>,
+  element: <Layout/>, 
   errorElement: <ErrorPage/>,
   children: [
     {path: "", element: <LandingPage/>},

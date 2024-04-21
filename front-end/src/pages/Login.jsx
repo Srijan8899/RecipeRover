@@ -72,7 +72,7 @@ const loginwithgoogle = ()=>{
                 <input className="pl-2 w-full border-none bg-[#F8FAE5] text-[#43766C] focus:ring-[#F8FAE5] text-xl" type="password" name="password" id="password" onChange={handleChange} placeholder="Password" />
               </div>
               <button type="submit" className="block w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-white font-semibold text-2xl ">Login</button>
-              <button type="submit" className="flex justify-center w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-white font-semibold text-2xl "> <FcGoogle size={30} className="mr-4" onClick={loginwithgoogle} /> Login with google </button>
+              <button type="submit"  className="flex justify-center w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-white font-semibold text-2xl " onClick={loginwithgoogle} > <FcGoogle size={30} className="mr-4"  /> Login with google </button>
               </form>
             </div>
     </div>

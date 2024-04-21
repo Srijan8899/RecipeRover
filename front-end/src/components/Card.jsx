@@ -3,7 +3,7 @@ import React from 'react'
 function Card({image,title,onClick, cardKey}) {
   return (
     <div key={cardKey} className="w-full max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
-            <img className="p-8 rounded-t-lg" src={image} alt={title} />
+            <img className="p-8 rounded-t-lg" src={image} alt={title} loading="lazy" />
         <div className="px-5 flex flex-col items-center justify-center">
           <div className="h-16 flex items-center justify-center">
                 <h5 className="text-xl text-center font-semibold tracking-tighttext-white">{title}</h5></div>

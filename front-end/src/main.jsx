@@ -12,6 +12,7 @@ import RecipeDetails from './pages/RecipeDetails.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import PostRecipe from './pages/PostRecipe.jsx'
+import Reveal from './components/Reveal.jsx'
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,8 @@ const router = createBrowserRouter([
     {path: "categories/cuisines", element: <Cuisines/>},
     {path: "categories/:type/:category", element: <RecipeDisplay/>},
     {path: "search/:type/:category", element: <RecipeDisplay/>},
-    {path: "/postrecipe", element: <PostRecipe/>}
+    {path: "/postrecipe", element: <PostRecipe/>},
+    {path: "/reveal", element: <Reveal/>},
   ]
   }
   ])

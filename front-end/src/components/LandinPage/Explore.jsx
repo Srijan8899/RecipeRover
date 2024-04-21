@@ -92,7 +92,7 @@ function Explore() {
         </div>
         </div>
         <div className="relative image w-[40vw] flex flex-col overflow-hidden">
-            <img src="./src/assets/fridge.jpg" alt="food" className="absolute w-full h-full z-1 opacity-60 brightness-90"/>
+            <img src="./src/assets/fridge.jpg" alt="food" className="absolute w-full h-full z-1 opacity-60 brightness-90" loading="lazy" />
             <div className="flex items-center justify-center w-full h-full">
             <div className="uppercase absolute top-40 ml-6 text-[15vw] leading-none font-light font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5] "> What's in your fridge ? </div>
              </div></div>

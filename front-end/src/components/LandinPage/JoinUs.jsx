@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 
 function JoinUs() {
   return (
-    <div className="w-full h-screen overflow-hidden">
-        <img src="./src/assets/table.jpg" alt="" className="absolute opacity-95 brightness-90 object-cover w-full h-full"/>
+    <div className="w-full h-screen overflow-hidden bg-[url('./src/assets/table.jpg')] brightness-90 bg-cover">
         <div className="top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] relative h-[80vh] w-[60vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl"> 
         <div className="inset-0 relative flex flex-col ">
         <h1 className=" uppercase text-[14vh] flex items-end justify-center mt-28 z-3 font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-none -mb-[.6vw]"> So, What are you waiting for? </h1>

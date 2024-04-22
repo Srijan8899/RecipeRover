@@ -7,13 +7,13 @@ import JoinUs from '../components/LandinPage/JoinUs';
 
 function LandingPage() {
   return (
-  <>
+  <div className="min-h-screen bg-black">
     <Hero/>
     <Marquee/>
     <Explore/>
     <Dining/>
     <JoinUs/>
-    </>
+    </div>
   );
 }
 

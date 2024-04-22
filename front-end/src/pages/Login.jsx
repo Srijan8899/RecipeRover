@@ -1,40 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState , useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import { UserContext } from '../components/Context/UserContext';
 
-
-function Login({ onLogin }) {
-  
-  const [email, setemail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // Here you can perform validation, authentication, etc.
-    // For simplicity, I'm just passing the username to the parent component
-    onLogin(username);
-  };
-
-  const [formData, setFormData] = useState({});
+function Login() {
+  const {loggedIn } = useContext(UserContext);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   // const { loading, error: errorMessage } = useSelector((state) => state.user);
   // const dispatch = useDispatch();
   const navigate = useNavigate();
   
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('/login', {
+        const response = await fetch("http://localhost:3000/user/login", {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify(formData),
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
         });
         const data = await response.json();
-        console.log(data.message);
+
+        if (response.ok) {
+          loggedIn(data.token, data.email, data.firstName, data.lastName);
+          navigate("/");
+          
+        }
+        if (data.success !== true) {
+        }
     } catch (error) {
         console.error('Error:', error);
     }
@@ -63,7 +63,7 @@ const loginwithgoogle = ()=>{
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                 </svg>
-                <input id="email" className="bg-[#F8FAE5] text-[#43766C] text-xl pl-2 w-full focus:ring-[#F8FAE5] border-none" type="email" name="email" onChange={handleChange} placeholder="Email Address" />
+                <input id="email" type="email" name="email" className="bg-[#F8FAE5] text-[#43766C] text-xl pl-2 w-full focus:ring-[#F8FAE5] border-none" onChange={handleChange} placeholder="Email Address" />
               </div>
               <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">

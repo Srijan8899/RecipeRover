@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from 'react';
 import {Link, NavLink} from "react-router-dom";
 import Logo from '../assets/logo.png'
+import { UserContext } from "./Context/UserContext";
 
 const Header = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
+  const {isLoggedIn, setIsLoggedIn, loggedout} = useContext(UserContext);
   const links = [
     {name: "Home", path: "/"},
     {name: "Post Recipes", path: "/postrecipe"},
@@ -27,6 +29,11 @@ const Header = () => {
     };
   }, [prevScrollPos]);
 
+  const clickHandler = () => {
+    loggedout();
+    setIsLoggedIn(false);
+  }
+
 
   return (
     <nav style={{ display: isHidden ? 'none' : 'block'  }}>
@@ -41,8 +48,14 @@ const Header = () => {
         ))}
 
       </div>
+          {isLoggedIn?(
+            <Link to="/" onClick={clickHandler}>
+            <div className="button -mt-2 border rounded-xl p-4 uppercase text-sm leading-[.6] bg-[#43766C]"> Logout</div></Link>
+              ):(
       <Link to="/login">
       <div className="button -mt-2 border rounded-xl p-4 uppercase text-sm leading-[.6] bg-[#43766C]"> Login/ Signup</div></Link>
+          )
+      }   
     </div>
     </nav>
   );

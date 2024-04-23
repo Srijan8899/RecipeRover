@@ -64,17 +64,17 @@ function Explore() {
     { 
         image:User,
         name:"Community",
-        link: "/community",
+        link: "/user/viewrecipe",
     },
     { 
         image:Upload,
         name:"Upload Your's",
-        link: "/postrecipe",
+        link: "/user/postrecipe",
     },
     { 
         image:Favorites,
         name:"Your Favorites",
-        link: "/favorites",
+        link: "/user/favorites",
     },
 ]
   return (

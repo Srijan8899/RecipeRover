@@ -13,6 +13,7 @@ import ErrorPage from './pages/ErrorPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import PostRecipe from './pages/PostRecipe.jsx'
 import Reveal from './components/Reveal.jsx'
+import UserRecipe from './pages/UserRecipe.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,10 +26,12 @@ const router = createBrowserRouter([
     {path: "signup", element: <Signup/>},
     {path: "contact", element: <ContactPage/>},
     {path: "fetch/:id", element: <RecipeDetails/>},
+    {path: "get/:id", element: <UserRecipe/>},
     {path: "categories/cuisines", element: <Cuisines/>},
     {path: "categories/:type/:category", element: <RecipeDisplay/>},
     {path: "search/:type/:category", element: <RecipeDisplay/>},
-    {path: "/postrecipe", element: <PostRecipe/>},
+    {path: "/user/postrecipe", element: <PostRecipe/>},
+    {path: "/user/:type", element: <RecipeDisplay/>},
     {path: "/reveal", element: <Reveal/>},
   ]
   }

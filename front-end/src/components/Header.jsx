@@ -10,8 +10,8 @@ const Header = () => {
   const {isLoggedIn, setIsLoggedIn, loggedout} = useContext(UserContext);
   const links = [
     {name: "Home", path: "/"},
-    {name: "Post Recipes", path: "/postrecipe"},
-    {name: "Community", path: "/community"},
+    {name: "Post Recipes", path: "/user/postrecipe"},
+    {name: "Community", path: "/user/viewrecipe"},
     {name: "Recipe Books", path: "/recipebooks"},
   ]
 

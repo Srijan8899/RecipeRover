@@ -1,56 +1,65 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FileInput ,Label } from 'flowbite-react';
+import { FileInput ,Label, Button, Alert } from 'flowbite-react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { Navigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 // import { UserContext } from '../../UserContext';
 
 function CreatePost() {
+  
+const navigate = useNavigate();
 //   const {userInfo} = useContext(UserContext);
 //   if(!userInfo.email) {
 //     return <Navigate to={'/login'} />;
 //   }
+const [formData, setFormData] = useState({
+  title: "",
+  summary: "",
+  ingredients: "",
+  instructions: "",
+  image: null,
+  authorName: "",
+})
 
+const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  setFormData({ ...formData, image: file });
+};
+      const firstName = localStorage.getItem("firstName")
+      const lastName = localStorage.getItem("lastName")
+      const fullName = firstName + ' ' + lastName;
 
-    // const [formData, setFormData] = useState({
-    //     title: "",
-    //     summary: "",
-    //     content:"",
-    //     cover: "",
-    //   });
-    const [title,setTitle] = useState('');
-  const [summary,setSummary] = useState('');
-  const [instructions,setInstructions] = useState('');
-  const [ingredient,setIngredient] = useState('');
-  const [files, setFiles] = useState('');
-  const [redirect, setRedirect] = useState(false);
-
-      async function createNewPost(ev) {
-        const data= new FormData();
-        data.set('title', title);
-        data.set('summary', summary);
-        data.set('content', content);
-        data.set('file', files[0]);
+      const handleSubmit = async (ev) => {
         ev.preventDefault();
-        // const response = await fetch('http://localhost:4000/post', {
-        //   method: 'POST',
-        //   body: data,
-        //   credentials: 'include',
-        // })
-        //   .catch(error => {
-        //     // Handle any errors that occur during the fetch operation
-        //     console.error('Error during fetch operation:', error);
-        //   });
-
+        
+        try{
+        const data= new FormData();
+        data.append('title', formData.title);
+        data.append('image', formData.image);
+        data.append('summary', formData.summary);
+        data.append('ingredients', formData.ingredients);
+        data.append('instructions', formData.instructions);
+        data.append('authorName', fullName);
+        const response = await fetch('http://localhost:3000/recipe/post', {
+          method: 'POST',
+          credentials: 'include',
+          body: data,
+        });
         if (response.ok) {
-          alert('Post created successfully');
-          setRedirect(true);
+          response.json(data);
+          navigate("/");
+        } else {
+          console.error("Error while posting recipe");
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+      } 
+          catch(error)  {
+            // Handle any errors that occur during the fetch operation
+            console.error('Error during fetch operation:', error);
+          }
       }
+    
 
-      if (redirect) {
-        return <Navigate to="/" />;
-      }
 useEffect(() => {
     const editor1 = new Quill('#editor1', {
         modules: {
@@ -70,18 +79,20 @@ useEffect(() => {
       const delta1 = new Delta()
         .insert({ list: 'bullet' }) // You can use 'ordered' for numbered list or 'bullet' for bullet points
       editor1.setContents(delta1);
+
       editor1.on('text-change', function() {
-        const ingredientdata = editor1.getContents();
-        setIngredient(ingredientdata);
+        const ingredientData = editor1.root.innerHTML; // Convert Delta to JSON string
+        setFormData(prevData => ({...prevData, ingredients: ingredientData}));
       });
 
 
       const delta2 = new Delta()
         .insert({ list: 'bullet' }) // You can use 'ordered' for numbered list or 'bullet' for bullet points
       editor2.setContents(delta2);
+
       editor2.on('text-change', function() {
-        const instructiondata = editor2.getContents();
-        setInstructions(instructiondata);
+        const instructionData = editor2.root.innerHTML;
+        setFormData(prevData =>({...prevData, instructions: instructionData}));
       });
     
 },[]);
@@ -92,7 +103,7 @@ useEffect(() => {
   <div className="relative my-32 mx-auto w-[80vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl">
      <div className='pt-20 max-w-3xl mx-auto '>
       <h1 className='text-center text-3xl my-5 font-semibold'>Post your Recipe</h1>
-      <form className='flex flex-col gap-4' onSubmit={createNewPost}>
+      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className='flex flex-col gap-4 sm:flex-row justify-between'>
           <input
             type='title'
@@ -100,9 +111,9 @@ useEffect(() => {
             required
             id='title'
             className='border border-gray-300 p-2 bg-transparent rounded-md w-full font-bold'
-            value={title}
-            onChange={ev => setTitle(ev.target.value)}
-            //onChange={ev=>setTitle((prev)=>({...prev, title:ev.target.value}))}
+            value={formData.title}
+            onChange={(ev) => setFormData({...formData , title: ev.target.value})
+          }
           />
         </div>
         <div className='flex flex-col gap-4 sm:flex-row justify-between'>
@@ -113,8 +124,9 @@ useEffect(() => {
             required
             id='summary'
             className='border border-gray-300 bg-transparent p-2 rounded-md w-full'
-            value={summary}
-            onChange={ev => setSummary(ev.target.value)}
+            value={formData.summary}
+            onChange={(ev) => setFormData({...formData , summary: ev.target.value})
+          }
             //onChange={ev=>setSummary((prev)=>({...prev, summary:ev.target.value}))}
           />
         </div>
@@ -123,10 +135,11 @@ useEffect(() => {
             type='file'
             accept='image/*'
             required
-            onChange={ev => setFiles(ev.target.files)}
+            onChange={handleFileChange}
             //onChange={ev => setFiles((prev)=>({...prev, cover:ev.target.files[0]}))}
           />
           <Label>Upload cover image</Label>
+          
         </div>
         {/* <ReactQuill
           theme='snow'
@@ -148,11 +161,6 @@ useEffect(() => {
         <button type='submit' className='border bg-gradient-to-r from-teal-200 to-lime-300 hover:bg-gradient-to-l text-black mb-10 p-3 rounded-md'>
           Publish
         </button>
-        {/* {publishError && (
-          <Alert className='mt-5' color='failure'>
-            {publishError}
-          </Alert>
-        )} */}
       </form>
     </div>
     <style>

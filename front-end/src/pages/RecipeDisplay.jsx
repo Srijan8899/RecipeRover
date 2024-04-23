@@ -8,7 +8,17 @@ function RecipeDisplay() {
     const [recipes, setRecipes] = useState([]);
     const [offset, setOffset] = useState(0);
 
-    if(type === "searchedbyname"){
+    if(type === "viewrecipe"){
+        useEffect(() => {
+            const fetchRecipes = async()=> {
+                const response = await fetch('http://localhost:3000/recipe/get');
+                const data = await response.json();
+                setRecipes(data);
+            };
+            fetchRecipes();
+        }, []);
+    }
+    else if(type === "searchedbyname"){
         useEffect(() => {
             const fetchRecipes = async()=> {
                 const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${category}&instructionsRequired=true&apiKey=${import.meta.env.VITE_API_KEY}`);
@@ -63,7 +73,7 @@ function RecipeDisplay() {
         )}
     
         <div className="mt-10 px-10 py-5 cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 items-center">
-            {
+            { type !== "viewrecipe" ?(
                 recipes.map((recipe) => {
                     return (
                         <Link 
@@ -72,6 +82,17 @@ function RecipeDisplay() {
                         <Card image={recipe.image} title={recipe.title} cardKey={recipe.id}/></Link>
                     )
                 })
+
+            ):(
+                recipes.map((recipe) => {
+                    return (
+                        <Link 
+                        to={`/get/${recipe._id}`}
+                        key={recipe._id}>
+                        <Card image={recipe.image} title={recipe.title} cardKey={recipe._id}/></Link>
+                    )
+                })
+            )
             }
         
         </div>

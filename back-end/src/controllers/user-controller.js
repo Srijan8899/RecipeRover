@@ -5,8 +5,6 @@ import asyncHandler from '../utils/asyncHandler.js';
 
 const salt = bcrypt.genSaltSync(10);
 
-
-
 export const signup =  asyncHandler( async (req, res) => {
     const{firstName, lastName, email, password}= req.body;
     try{

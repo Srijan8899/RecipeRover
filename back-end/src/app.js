@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieparser from "cookie-parser";
 
 import router from "./routes/user-route.js";
-
+import recipeRouter from "./routes/recipe-route.js";
 const app = express();
 
 app.use(cors(
@@ -20,5 +20,6 @@ app.use(cookieparser());
 
 
 app.use("/user", router);
+app.use("/recipe", recipeRouter);
 
 export default app

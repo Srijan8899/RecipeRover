@@ -14,6 +14,8 @@ import ContactPage from './pages/ContactPage.jsx'
 import PostRecipe from './pages/PostRecipe.jsx'
 import Reveal from './components/Reveal.jsx'
 import UserRecipe from './pages/UserRecipe.jsx'
+import UserFavorites from './pages/UserFavorites.jsx'
+import EditPost from './pages/EditPost.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,8 +33,10 @@ const router = createBrowserRouter([
     {path: "categories/:type/:category", element: <RecipeDisplay/>},
     {path: "search/:type/:category", element: <RecipeDisplay/>},
     {path: "/user/postrecipe", element: <PostRecipe/>},
+    {path: "/user/recipe/update/:id", element: <EditPost/>},
     {path: "/user/:type", element: <RecipeDisplay/>},
     {path: "/reveal", element: <Reveal/>},
+    {path: "/community/user/:category", element: <UserFavorites/>}
   ]
   }
   ])

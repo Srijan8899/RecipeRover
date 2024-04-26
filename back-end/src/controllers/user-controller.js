@@ -2,6 +2,8 @@ import {User} from '../models/user-model.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import asyncHandler from '../utils/asyncHandler.js';
+import { Recipe } from '../models/recipe-model.js';
+import { Book } from '../models/book-model.js';
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -28,23 +30,37 @@ export const login = asyncHandler( async (req, res) => {
      if (!userDoc) {
         return res.status(400).json('User not found');
     }
-
         const passOk = bcrypt.compareSync(password, userDoc.password);
 
         if(passOk){
-            const token=jwt.sign({ id: userDoc._id}, process.env.JWT_SECRET, {expiresIn: '3d'}, (err, token) => {
-                if(err) throw err;
-                const {firstName, lastName, email} = userDoc;
-                res.status(200).json({
+            const token=jwt.sign({ id: userDoc._id}, process.env.JWT_SECRET, {expiresIn: '3d'});
+                const {firstName, lastName, email, favorites} = userDoc;
+                res.status(200)
+                .json({
                     id: userDoc._id,
                     firstName,
                     lastName,
                     email,
-                    token
+                    token,
+                    favorites
             });
-            });
+            
         }
         else{
             res.status(400).json('Wrong password');
         }
 });
+
+export const getFavorites = asyncHandler( async (req, res) => {
+    const {id} = req.user;
+    const userDoc = await User.findById(id);
+    const favorites = userDoc.favorites;
+    const recipes = await Recipe.find({ _id: { $in: favorites } });
+    res.json(recipes);
+    
+})
+
+export const getBooks = asyncHandler( async (req, res) => {
+    const books = await Book.find().sort({ createdAt: -1 }).limit(10);
+  return res.status(200).json(books);
+})

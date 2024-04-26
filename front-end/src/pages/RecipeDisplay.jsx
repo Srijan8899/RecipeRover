@@ -8,7 +8,7 @@ function RecipeDisplay() {
     const [recipes, setRecipes] = useState([]);
     const [offset, setOffset] = useState(0);
 
-    if(type === "viewrecipe"){
+if(type === "viewrecipe"){
         useEffect(() => {
             const fetchRecipes = async()=> {
                 const response = await fetch('http://localhost:3000/recipe/get');
@@ -89,7 +89,7 @@ function RecipeDisplay() {
                         <Link 
                         to={`/get/${recipe._id}`}
                         key={recipe._id}>
-                        <Card image={recipe.image} title={recipe.title} cardKey={recipe._id}/></Link>
+                        <Card image={recipe.image.url} title={recipe.title} cardKey={recipe._id}/></Link>
                     )
                 })
             )

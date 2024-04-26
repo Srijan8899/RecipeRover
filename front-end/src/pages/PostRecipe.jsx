@@ -47,7 +47,7 @@ const handleFileChange = (e) => {
         });
         if (response.ok) {
           response.json(data);
-          navigate("/");
+          navigate("/user/viewrecipe");
         } else {
           console.error("Error while posting recipe");
           throw new Error(`HTTP error! status: ${response.status}`);

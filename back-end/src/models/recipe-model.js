@@ -7,9 +7,9 @@ const recipeSchema = new mongoose.Schema(
             required: true,
         },
         image: {
-            type: String,
-            required: true,
-        },
+            url: String,
+            public_id: String
+        },  
         summary: {
             type: String,
             required: true,
@@ -26,6 +26,17 @@ const recipeSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+        comments:[
+            {
+            text: String,
+            created: {type: Date, default: Date.now},
+            postedBy: {
+                id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+                name: String
+              }
+            }
+        ]
     },
     { timestamps: true }
 );

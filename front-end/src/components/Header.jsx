@@ -12,7 +12,7 @@ const Header = () => {
     {name: "Home", path: "/"},
     {name: "Post Recipes", path: "/user/postrecipe"},
     {name: "Community", path: "/user/viewrecipe"},
-    {name: "Recipe Books", path: "/recipebooks"},
+    {name: "Recipe Books", path: "/community/user/books"},
   ]
 
   useEffect(() => {

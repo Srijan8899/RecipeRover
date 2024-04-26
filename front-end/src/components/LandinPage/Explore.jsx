@@ -59,7 +59,7 @@ function Explore() {
     { 
         image:Books,
         name:"Recipe Books",
-        link: "/books",
+        link: "/community/user/books",
     },
     { 
         image:User,
@@ -74,7 +74,7 @@ function Explore() {
     { 
         image:Favorites,
         name:"Your Favorites",
-        link: "/user/favorites",
+        link: "/community/user/favorites",
     },
 ]
   return (

@@ -26,4 +26,21 @@ const uploadOnCloudinary = async (localFilePath) => {
     }
 }
 
-export {uploadOnCloudinary}
+const destroyOnCloudinary = async (publicId) => {
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+      });
+    try {
+        if(!publicId){
+            return null
+        }
+       const response =  await cloudinary.uploader.destroy(publicId)
+        return response
+    } catch (error) {
+        return null
+    }
+}
+
+export {uploadOnCloudinary, destroyOnCloudinary}

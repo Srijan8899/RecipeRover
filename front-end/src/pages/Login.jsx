@@ -29,7 +29,7 @@ function Login() {
         const data = await response.json();
 
         if (response.ok) {
-          loggedIn(data.token, data.email, data.firstName, data.lastName);
+          loggedIn(data.token, data.email, data.firstName, data.lastName , data.id, data.favorites);
           navigate("/");
           
         }

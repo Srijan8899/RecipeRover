@@ -21,7 +21,7 @@ function RecipeDetails() {
           <h1 className="uppercase text-[15vh] flex items-end justify-center text-center pt-[7vh] font-light leading-none">
             {details.title}
           </h1>
-          <div className=" h-80 w-auto object-cover rounded-lg overflow-hidden flex items-center justify-center">
+          <div className=" h-80 w-auto object-cover mx-auto rounded-xl overflow-hidden flex items-center justify-center">
             <img
               src={details.image}
               alt={details.title}

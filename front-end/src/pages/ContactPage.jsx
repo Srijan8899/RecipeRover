@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from 'react-hot-toast';
 
 function ContactPage() {
     const [result, setResult] = React.useState("");
@@ -20,6 +21,7 @@ function ContactPage() {
       if (data.success) {
         setResult("Form Submitted Successfully");
         event.target.reset();
+        toast.success("Message Sent Successfully");
       } else {
         console.log("Error", data);
         setResult(data.message);

@@ -32,11 +32,11 @@ const router = createBrowserRouter([
     {path: "categories/cuisines", element: <Cuisines/>},
     {path: "categories/:type/:category", element: <RecipeDisplay/>},
     {path: "search/:type/:category", element: <RecipeDisplay/>},
-    {path: "/user/postrecipe", element: <PostRecipe/>},
-    {path: "/user/recipe/update/:id", element: <EditPost/>},
-    {path: "/user/:type", element: <RecipeDisplay/>},
-    {path: "/reveal", element: <Reveal/>},
-    {path: "/community/user/:category", element: <UserFavorites/>}
+    {path: "user/postrecipe", element: <PostRecipe/>},
+    {path: "user/recipe/update/:id", element: <EditPost/>},
+    {path: "user/:type", element: <RecipeDisplay/>},
+    {path: "reveal", element: <Reveal/>},
+    {path: "community/user/:category", element: <UserFavorites/>}
   ]
   }
   ])

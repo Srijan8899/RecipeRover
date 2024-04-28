@@ -4,11 +4,9 @@ import CommentList from "../components/CommentList";
 
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { FaCommentAlt, FaRegBookmark, FaBookmark } from "react-icons/fa";
-
-
+import toast from "react-hot-toast";
 
 function UserRecipe() {
-
   const navigate = useNavigate();
   const { id } = useParams(); //id of recipe
   const [details, setDetails] = useState({}); // to show recipe details
@@ -17,7 +15,8 @@ function UserRecipe() {
   const [comments, setComments] = useState([]); // to show all comments
 
   const [commentBox, setCommentBox] = useState(false);
-  // const [isFavorite, setIsFavorite] = useState(false);
+
+  const postedBy = details && details.postedBy
 
   const userInfo = localStorage.getItem("token")
     ? {
@@ -27,6 +26,10 @@ function UserRecipe() {
         favorites: localStorage.getItem("favorites"),
       }
     : null;
+
+    
+  const userID = userInfo &&userInfo.userId
+
 
   const fetchData = async () => {
     const response = await fetch("http://localhost:3000/recipe/get/" + id);
@@ -40,18 +43,23 @@ function UserRecipe() {
   }, []);
 
 
-
   const deleteRecipe = async () => {
     try {
-      const response = await fetch("http://localhost:3000/recipe/delete/" + id, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      });
+      const response = await fetch(
+        "http://localhost:3000/recipe/delete/" + id,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
       const data = await response.json();
       if (data.success === true) {
+        toast('Recipe Deleted.', {
+          icon: '🗑️',
+        });
         navigate("/user/viewrecipe");
       }
     } catch (error) {
@@ -79,6 +87,9 @@ function UserRecipe() {
       );
       const data = await response.json();
       if (data.success === true) {
+        toast('Comment added Successfully', {
+          icon: '💬',
+        });
         fetchData();
         setComment("");
       }
@@ -140,7 +151,6 @@ function UserRecipe() {
 
   const addFavorite = async () => {
     try {
-
       const response = await fetch(
         "http://localhost:3000/recipe/addFavorite/" + id,
         {
@@ -154,8 +164,11 @@ function UserRecipe() {
           }),
         }
       );
-        const data = await response.json();
+      const data = await response.json();
       localStorage.setItem("favorites", data);
+      toast('Added to favorites', {
+        icon: '❤️',
+      });
       fetchData();
     } catch (error) {
       console.log(error);
@@ -164,7 +177,6 @@ function UserRecipe() {
 
   const removeFavorite = async () => {
     try {
-      
       const response = await fetch(
         "http://localhost:3000/recipe/removeFavorite/" + id,
         {
@@ -180,24 +192,26 @@ function UserRecipe() {
       );
       const data = await response.json();
       localStorage.setItem("favorites", data);
+      toast('Removed from favorites', {
+        icon: '❤️',
+      });
       fetchData();
     } catch (error) {
       console.log(error);
     }
   };
 
-    // Initialize the state with a function to prevent infinite loop
-    const [isFavorite, setIsFavorite] = useState(() => {
-      // Check if the recipe ID of this page is in the user's favorites
-      return userInfo.favorites.includes(id);
-    });
-  
-    // useEffect to update isFavorite when userInfo or id changes
-    useEffect(() => {
-      // Check if the recipe ID of this page is in the user's favorites
+
+ 
+const [isFavorite, setIsFavorite] = useState(false);
+
+  // useEffect to update isFavorite when userInfo or id changes
+  useEffect(() => {
+    // Check if the recipe ID of this page is in the user's favorites
+    if(userInfo !== null){
       setIsFavorite(userInfo.favorites.includes(id));
-    }, [userInfo, id]); // Update isFavorite when userInfo or id changes
-  
+    }
+  }, [userInfo, id]); // Update isFavorite when userInfo or id changes
 
   const likesId = details && details.likes;
   return (
@@ -214,11 +228,23 @@ function UserRecipe() {
               className="rounded-lg"
             />
           </div>
-          <div className="flex items-center justify-center gap-10 my-5 font-['Neue_Montreal'] text-[1vw]">
-          <Link to={`/user/recipe/update/${id}`}>
-          <button className="border rounded-xl p-4 uppercase bg-green-500 text-white">Update recipe</button></Link>
-          <button onClick={deleteRecipe} className="border rounded-xl p-4 uppercase bg-red-500 text-white"> Delete Recipe</button>
-          </div>
+          {postedBy === userID && (
+              <div className="flex items-center justify-center gap-10 my-5 font-['Neue_Montreal'] text-[1vw]">
+                <Link to={`/user/recipe/update/${id}`}>
+                  <button className="border rounded-xl p-4 uppercase bg-green-500 text-white">
+                    Update recipe
+                  </button>
+                </Link>
+                <button
+                  onClick={deleteRecipe}
+                  className="border rounded-xl p-4 uppercase bg-red-500 text-white"
+                >
+                  {" "}
+                  Delete Recipe
+                </button>
+              </div>
+            )}
+
           <div className="flex mb-10 font-['Neue_Montreal'] text-[3vh]">
             <div className="w-[35%] ml-20 ingredients">
               <h1 className="uppercase pt-[7vh] text-[8vh] font-['Founders_Grotesk_X_Condensed'] font-light leading-none">
@@ -256,6 +282,8 @@ function UserRecipe() {
           `}
         </style>
       </div>
+
+      {userInfo !== null ? (
       <div className=" relative mb-10 mx-auto bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl flex gap-8 p-5 text-3xl ">
         {likesId?.includes(userInfo && userInfo.userId) ? (
           <button onClick={removeLike}>
@@ -274,19 +302,19 @@ function UserRecipe() {
         </button>
         {isFavorite ? (
           <button onClick={removeFavorite}>
-          <FaBookmark size={40} className="mx-auto my-[.4rem]" />
-          <span className="pt-10">Remove from Favorite</span>
-        </button>
+            <FaBookmark size={40} className="mx-auto my-[.4rem]" />
+            <span className="pt-10">Remove from Favorite</span>
+          </button>
         ) : (
           <button onClick={addFavorite}>
-          <FaRegBookmark size={40} className="mx-auto my-[.4rem]" />
-          <span className="pt-10">Save as Favorite</span>
-        </button>
-         )}
-          
-        
-        
+            <FaRegBookmark size={40} className="mx-auto my-[.4rem]" />
+            <span className="pt-10">Save as Favorite</span>
+          </button>
+        )}
       </div>
+      ) : (
+        ""
+      )}
 
       {userInfo !== null && commentBox ? (
         <div className="flex justify-around items-start py-4 pb-10 gap-20">

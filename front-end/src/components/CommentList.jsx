@@ -7,7 +7,6 @@ const CommentList = ({ name, text }) => {
             <div className="p-4">
                 <div className="flex items-center">
                     <img className="w-12 h-12 rounded-full mr-4" src={Avatar} alt="Avatar" />
-
                     <div>
                         <div className="font-semibold text-lg">{name} </div>
                         <p className="text-lg text-white">{text}</p>

@@ -78,7 +78,7 @@ function Explore() {
     },
 ]
   return (
-    <div className="w-full flex text-white bg-zinc-900">
+    <div data-scroll data-scroll-section data-scroll-speed="-.1" className="w-full flex text-white bg-zinc-900">
         <div className="w-[60vw]">
         <h1 className="text-4xl flex text-center items-center justify-center pt-16 font-bold">
             Your everyday question of what to cook today will be answered here.

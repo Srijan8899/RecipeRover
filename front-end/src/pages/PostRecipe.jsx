@@ -3,15 +3,11 @@ import { FileInput ,Label, Button, Alert } from 'flowbite-react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {useNavigate } from 'react-router-dom';
-// import { UserContext } from '../../UserContext';
+import toast from 'react-hot-toast';
 
 function CreatePost() {
   
 const navigate = useNavigate();
-//   const {userInfo} = useContext(UserContext);
-//   if(!userInfo.email) {
-//     return <Navigate to={'/login'} />;
-//   }
 const [formData, setFormData] = useState({
   title: "",
   summary: "",
@@ -20,6 +16,14 @@ const [formData, setFormData] = useState({
   image: null,
   authorName: "",
 })
+
+useEffect(() => {
+  if (!localStorage.getItem("token")) {
+    console.log("helloo")
+    return navigate("/login");
+  }
+},[formData])
+
 
 const handleFileChange = (e) => {
   const file = e.target.files[0];
@@ -40,6 +44,7 @@ const handleFileChange = (e) => {
         data.append('ingredients', formData.ingredients);
         data.append('instructions', formData.instructions);
         data.append('authorName', fullName);
+        data.append('postedBy', localStorage.getItem("id"));
         const response = await fetch('http://localhost:3000/recipe/post', {
           method: 'POST',
           credentials: 'include',
@@ -48,8 +53,12 @@ const handleFileChange = (e) => {
         if (response.ok) {
           response.json(data);
           navigate("/user/viewrecipe");
+          toast('Recipe posted.', {
+            icon: '🎉',
+          });
         } else {
           console.error("Error while posting recipe");
+          toast.error("Error while posting recipe");
           throw new Error(`HTTP error! status: ${response.status}`);
         }
       } 
@@ -87,7 +96,7 @@ useEffect(() => {
 
 
       const delta2 = new Delta()
-        .insert({ list: 'bullet' }) // You can use 'ordered' for numbered list or 'bullet' for bullet points
+        .insert({ list: 'bullet' })
       editor2.setContents(delta2);
 
       editor2.on('text-change', function() {

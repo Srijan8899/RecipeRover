@@ -5,7 +5,7 @@ import { uploadOnCloudinary, destroyOnCloudinary } from "../utils/cloudinary.js"
 
 export const createRecipe = asyncHandler(async (req, res) => {
   try {
-    const { title, summary, ingredients, instructions, authorName } = req.body;
+    const { title, summary, ingredients, instructions, authorName, postedBy } = req.body;
 
     const { url, public_id } = await uploadImage(req.file);
     const recipeDoc = await Recipe.create({
@@ -15,6 +15,7 @@ export const createRecipe = asyncHandler(async (req, res) => {
       ingredients,
       instructions,
       authorName,
+      postedBy,
     });
     return res.status(200).json(recipeDoc);
   } catch (error) {

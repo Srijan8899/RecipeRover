@@ -11,7 +11,6 @@ import French from '../../assets/cuisines/french.jpg'
 import Spanish from '../../assets/cuisines/spanish.jpeg'
 import Mexican from '../../assets/cuisines/mexican.jpg'
 
-
 function Cuisines() {
 
     const Categories = [
@@ -67,7 +66,6 @@ function Cuisines() {
         {Categories.map(({image, title, link},index) => (
             <Cards key={index} image={image} name={title} link={link}/>
         ))
-        
         }   
         </div>
         </div> </div>

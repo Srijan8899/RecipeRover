@@ -47,7 +47,9 @@ function RecipeDetails() {
                 recipe instructions
               </h1>
               <div>
-                {/* <h2 dangerouslySetInnerHTML={{ __html:details.summary}}/> */}
+                Summary : <h2 dangerouslySetInnerHTML={{ __html:details.summary}}/>
+              </div>
+              <div className="mt-5"> Instructions--
                 {details.analyzedInstructions &&
                   details.analyzedInstructions.map((instruction, index) => (
                     <ul className="list-disc" key={index}>

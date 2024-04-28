@@ -20,8 +20,8 @@ function Dining() {
         })
    
   return (
-    <div className="eyes w-full h-screen overflow-hidden">
-      <div data-scroll data-scroll-speed="-.7" className="relative w-full h-full flex flex-col justify-center items-center bg-cover bg-center bg-[url('./src/assets/dining2.jpg')]">
+    <div data-scroll data-scroll-speed=".2" className="w-full h-screen overflow-hidden">
+      <div className="relative w-full h-full flex flex-col justify-center items-center bg-cover bg-center bg-[url('./src/assets/dining2.jpg')]">
       {["ready", "to cook", "delicious food ?"].map((item, index) => (
       <h1 className="uppercase text-[12vw] leading-[10vw] tracking-loose font-semibold font-['Founders_Grotesk_X_Condensed_bold'] text-[#F8FAE5]" key={index}>
           {item}

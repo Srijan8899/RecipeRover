@@ -3,7 +3,7 @@ import { FileInput, Label } from "flowbite-react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, useParams } from "react-router-dom";
-// import { UserContext } from '../../UserContext';
+import toast from "react-hot-toast";
 
 function EditPost() {
   const { id } = useParams();
@@ -14,6 +14,13 @@ function EditPost() {
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
   const [image, setImage] = useState(null);
+
+  const userInfo = localStorage.getItem("token")
+    ? {
+        userId: localStorage.getItem("id"),
+        token: localStorage.getItem("token"),
+      }
+    : null;
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -28,13 +35,17 @@ function EditPost() {
         `http://localhost:3000/recipe/update/${id}`,
         {
           method: "PUT",
-          credentials: "include",
           body: data,
-        }
+          credentials: "include",
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        },
       );
       if (response.ok) {
         response.json(data);
         navigate("/user/viewrecipe");
+        toast.success("Recipe updated successfully");
       } else {
         console.error("Error while posting recipe");
         throw new Error(`HTTP error! status: ${response.status}`);

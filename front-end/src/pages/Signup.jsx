@@ -37,9 +37,11 @@ function Signup() {
       }
       if (res.ok) {
         navigate("/login");
+        toast.success("Signup Successful");
       }
     } catch (error) {
       setErrorMessage(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -211,13 +213,13 @@ function Signup() {
             >
               Signup
             </button>
-            <button
+            {/* <button
               type="submit"
               className="flex items-center justify-center w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-[#F8FAE5] font-light text-2xl "
             >
               {" "}
               <FcGoogle size={30} className="mr-4" /> Signup with google{" "}
-            </button>
+            </button> */}
           </form>
         </div>
       </div>
@@ -242,12 +244,6 @@ function Signup() {
           </Link>
         </div>
       </div>
-
-      {/* {errorMessage && (
-            <Alert className='mt-5' color='failure'>
-              {errorMessage}
-            </Alert>
-          )} */}
     </div>
   );
 }

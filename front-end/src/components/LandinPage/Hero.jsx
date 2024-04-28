@@ -3,7 +3,7 @@ import React from 'react'
 function Hero() {
   return (
 
-    <div className="w-full h-screen bg-[url('./src/assets/menu1.jpg')] brightness-90 bg-cover overflow-hidden">
+    <div data-scroll data-scroll-section data-scroll-speed="-.3" className="w-full h-screen bg-[url('./src/assets/menu1.jpg')] brightness-90 bg-cover overflow-hidden">
         {/* <img src="./src/assets/layer2.png" alt="" className="w-full h-screen z-2 bg-contain "/> */}
         <div className="h-[50%] flex flex-col">
         <h1 className=" uppercase text-[26vw] flex items-end justify-center mt-52 z-3 font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-[.6] -mb-[.6vw]"> recipe rover </h1>

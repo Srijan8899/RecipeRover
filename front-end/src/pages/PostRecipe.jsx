@@ -143,6 +143,7 @@ useEffect(() => {
           <FileInput
             type='file'
             accept='image/*'
+            id='file-upload'
             required
             onChange={handleFileChange}
             //onChange={ev => setFiles((prev)=>({...prev, cover:ev.target.files[0]}))}

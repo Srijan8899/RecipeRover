@@ -15,6 +15,8 @@ function UserRecipe() {
   const [comments, setComments] = useState([]); // to show all comments
 
   const [commentBox, setCommentBox] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
+  const [commentCount, setCommentCount] = useState(0);
 
   const postedBy = details && details.postedBy
 
@@ -36,6 +38,8 @@ function UserRecipe() {
     const data = await response.json();
     setDetails(data);
     setComments(data.comments);
+    setLikeCount(data.likes.length);
+    setCommentCount(data.comments.length);
   };
 
   useEffect(() => {
@@ -231,19 +235,32 @@ const [isFavorite, setIsFavorite] = useState(false);
           {postedBy === userID && (
               <div className="flex items-center justify-center gap-10 my-5 font-['Neue_Montreal'] text-[1vw]">
                 <Link to={`/user/recipe/update/${id}`}>
-                  <button className="border rounded-xl p-4 uppercase bg-green-500 text-white">
+                  <button className="rounded-xl p-4 uppercase bg-[#00a86b] hover:bg-[#00a86aba] text-white font-bold">
                     Update recipe
                   </button>
                 </Link>
                 <button
                   onClick={deleteRecipe}
-                  className="border rounded-xl p-4 uppercase bg-red-500 text-white"
+                  className="rounded-xl p-4 uppercase bg-[#d2042d] hover:bg-[#d2042dc1] text-white font-bold"
                 >
                   {" "}
                   Delete Recipe
                 </button>
               </div>
             )}
+
+            <div className="flex items-center justify-between gap-10 my-5 mx-36 font-['Neue_Montreal'] text-[1vw]">
+            <span>
+            {new Date(details.createdAt).toLocaleDateString()}
+            </span>
+            <span className=" font-bold ">
+              -Posted By {details && details.authorName}
+            </span>
+        <span>
+          - {likeCount} Likes❤️ & &nbsp;
+           {commentCount} Comments 💬
+        </span>
+              </div>
 
           <div className="flex mb-10 font-['Neue_Montreal'] text-[3vh]">
             <div className="w-[35%] ml-20 ingredients">
@@ -346,10 +363,10 @@ const [isFavorite, setIsFavorite] = useState(false);
                 placeholder="Add a comment..."
                 className="w-80 md:w-96 h-auto p-2 bg-transparent"
               />
-              <div className="pt-1">
+              <div className="pt-1 flex">
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-500 text-white rounded"
+                  className="px-4 py-2 bg-[#0f1d2c] text-white rounded-md"
                 >
                   Comment
                 </button>

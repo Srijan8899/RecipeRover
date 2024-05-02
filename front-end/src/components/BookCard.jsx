@@ -7,7 +7,7 @@ function Card({image,title,onClick, cardKey}) {
         <div className="px-5 flex flex-col items-center justify-center">
           <div className="h-16 flex items-center justify-center">
                 <h5 className="text-xl text-center font-semibold tracking-tighttext-white">{title}</h5></div>
-                <button onClick={onClick} className="my-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm  px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">Download</button>
+                <button onClick={onClick} className="my-5 text-white focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm  px-5 py-2.5 text-center bg-[#4c8479] hover:bg-[#39665d] focus:ring-[#63ad9e]">Download</button>
             </div>
         </div>
   )

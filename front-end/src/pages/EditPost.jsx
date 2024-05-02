@@ -107,15 +107,16 @@ function EditPost() {
                 }
               />
             </div>
-            <div className="flex gap-4 items-center justify-between text-white border-gray-300 p-3">
+            <div className="flex gap-4 items-center justify-between bg-transparent text-white border-gray-300 p-3">
               <FileInput
                 type="file"
+                id="file-upload"
                 accept="image/*"
                 onChange={(ev) =>
                   setImage( ev.target.files[0] )
                 }
               />
-              <Label>While Updation you don't havee to neccesarily upload image</Label>
+              <Label >While Updation you don't have to neccesarily upload image</Label>
             </div>
             <h2 className="mt-10 text-[20px]">
               {" "}

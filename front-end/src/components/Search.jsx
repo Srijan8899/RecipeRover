@@ -21,6 +21,7 @@ function Search({ currentpage }) {
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-teal-200 to-lime-300 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
           <div className="relative inset-0 flex items-center justify-between px-4 py-1 leading-none bg-[#F8FAE5] rounded-xl overflow-hidden">
+            <form onSubmit={submitHandler} className="flex">
             <input
               onChange={(e) => setSearch(e.target.value)}
               value={search}
@@ -37,6 +38,7 @@ function Search({ currentpage }) {
             >
               <FaSearch size={35} />
             </button>
+            </form>
           </div>
         </div>
       </div>

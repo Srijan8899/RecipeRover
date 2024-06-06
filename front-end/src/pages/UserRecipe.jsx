@@ -10,6 +10,8 @@ function UserRecipe() {
   const navigate = useNavigate();
   const { id } = useParams(); //id of recipe
   const [details, setDetails] = useState({}); // to show recipe details
+  const apiURL = import.meta.env.VITE_SERVER_URL;
+
 
   const [comment, setComment] = useState(""); //for text of comment
   const [comments, setComments] = useState([]); // to show all comments
@@ -34,7 +36,7 @@ function UserRecipe() {
 
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/recipe/get/" + id);
+    const response = await fetch(`${apiURL}/recipe/get/${id}`);
     const data = await response.json();
     setDetails(data);
     setComments(data.comments);
@@ -50,7 +52,7 @@ function UserRecipe() {
   const deleteRecipe = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/recipe/delete/" + id,
+        `${apiURL}/recipe/delete/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -75,7 +77,7 @@ function UserRecipe() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:3000/recipe/comment/" + id,
+        `${apiURL}/recipe/comment/${id}`,
         {
           method: "PUT",
           headers: {
@@ -113,7 +115,7 @@ function UserRecipe() {
   const addLike = async () => {
     try {
       const { data } = await fetch(
-        "http://localhost:3000/recipe/addLike/" + id,
+        `${apiURL}/recipe/addLike/${id}`,
         {
           method: "PUT",
           headers: {
@@ -135,7 +137,7 @@ function UserRecipe() {
   const removeLike = async () => {
     try {
       const { data } = await fetch(
-        "http://localhost:3000/recipe/removeLike/" + id,
+        `${apiURL}/recipe/removeLike/${id}`,
         {
           method: "PUT",
           headers: {
@@ -156,7 +158,7 @@ function UserRecipe() {
   const addFavorite = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/recipe/addFavorite/" + id,
+        `${apiURL}/recipe/addFavorite/${id}`,
         {
           method: "PUT",
           headers: {
@@ -182,7 +184,7 @@ function UserRecipe() {
   const removeFavorite = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/recipe/removeFavorite/" + id,
+        `${apiURL}/recipe/removeFavorite/${id}`,
         {
           method: "PUT",
           headers: {

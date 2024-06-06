@@ -11,6 +11,7 @@ function Login() {
     password: "",
   });
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_SERVER_URL;
   
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +20,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch("http://localhost:3000/user/login", {
+        const response = await fetch(`${apiURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: { 'Content-Type': 'application/json' },

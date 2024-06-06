@@ -7,6 +7,8 @@ function UserFavorites() {
   const { category } = useParams();
   const [recipes, setRecipes] = useState([]);
   const [books, setBooks] = useState([]);
+  const apiURL = import.meta.env.VITE_SERVER_URL;
+
 
   const userInfo = localStorage.getItem("token")
     ? {
@@ -19,7 +21,7 @@ function UserFavorites() {
   if(category === "favorites"){
   useEffect(() => {
     const fetchRecipes = async () => {
-      const response = await fetch("http://localhost:3000/user/getFavorites", {
+      const response = await fetch(`${apiURL}/user/getFavorites`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +39,7 @@ function UserFavorites() {
 else{
     useEffect(() => {
         const fetchBooks = async () => {
-          const response = await fetch("http://localhost:3000/user/books", {
+          const response = await fetch(`${apiURL}/user/books`, {
             method: "GET",
           });
           const data = await response.json();

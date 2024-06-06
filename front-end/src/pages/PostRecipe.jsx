@@ -17,6 +17,8 @@ const [formData, setFormData] = useState({
   authorName: "",
 })
 
+const apiURL = import.meta.env.VITE_SERVER_URL;
+
 useEffect(() => {
   if (!localStorage.getItem("token")) {
     console.log("helloo")
@@ -45,7 +47,7 @@ const handleFileChange = (e) => {
         data.append('instructions', formData.instructions);
         data.append('authorName', fullName);
         data.append('postedBy', localStorage.getItem("id"));
-        const response = await fetch('http://localhost:3000/recipe/post', {
+        const response = await fetch(`${apiURL}/recipe/post`, {
           method: 'POST',
           credentials: 'include',
           body: data,

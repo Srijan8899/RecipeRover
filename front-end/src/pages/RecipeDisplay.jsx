@@ -7,11 +7,13 @@ function RecipeDisplay() {
   const { type, category } = useParams();
   const [recipes, setRecipes] = useState([]);
   const [offset, setOffset] = useState(0);
+  const apiURL = import.meta.env.VITE_SERVER_URL;
+
 
   if (type === "viewrecipe") {
     useEffect(() => {
       const fetchRecipes = async () => {
-        const response = await fetch("http://localhost:3000/recipe/get");
+        const response = await fetch(`${apiURL}/recipe/get`);
         const data = await response.json();
         setRecipes(data);
       };

@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 function EditPost() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_SERVER_URL;
+
 
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
@@ -32,7 +34,7 @@ function EditPost() {
       data.append("ingredients", ingredients);
       data.append("instructions", instructions);
       const response = await fetch(
-        `http://localhost:3000/recipe/update/${id}`,
+        `${apiURL}/recipe/update/${id}`,
         {
           method: "PUT",
           body: data,
@@ -58,7 +60,7 @@ function EditPost() {
 
   useEffect(() => {
     const previousData = async () => {
-        const response = await fetch(`http://localhost:3000/recipe/get/${id}`, {
+        const response = await fetch(`${apiURL}/recipe/get/${id}`, {
           method: "GET",
           credentials: "include",
         });

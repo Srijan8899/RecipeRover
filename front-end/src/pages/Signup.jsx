@@ -10,8 +10,6 @@ function Signup() {
     email: "",
     password: "",
   });
-  const apiURL = import.meta.env.VITE_SERVER_URL;
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +26,7 @@ function Signup() {
     }
     try {
       setErrorMessage(null);
-      const res = await fetch(`${apiURL}/user/signup`, {
+      const res = await fetch("http://localhost:3000/user/signup", {
         method: "POST",
         body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" },

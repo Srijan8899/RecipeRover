@@ -1,5 +1,6 @@
 import React from 'react'
 import toast from 'react-hot-toast';
+import contact from '../assets/contact.jpg'
 
 function ContactPage() {
     const [result, setResult] = React.useState("");
@@ -30,7 +31,7 @@ function ContactPage() {
   return (
     
 <div className="w-full h-screen overflow-hidden text-[#F8FAE5]">
-        <img src="./src/assets/contact.jpg" alt="" className="absolute opacity-95 brightness-75 object-cover w-full h-full"/>
+        <img src={contact} alt="" className="absolute opacity-95 brightness-75 object-cover w-full h-full"/>
         <div className="mt-3 md:mt-10 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] relative h-[60vh] md:h-[80vh] w-full md:w-[60vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl"> 
         <h1 className="text-4xl font-medium pt-10 text-center">Contact us</h1>
     <p className="mt-3 text-center">Email us at shreyanshv045@gmail.com or Message us here:</p>

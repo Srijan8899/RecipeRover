@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import pizza from '../assets/pizza.jpg'
 
 function Signup() {
 
@@ -227,7 +228,7 @@ function Signup() {
       </div>
       <div className="relative image w-1/2 flex flex-col">
         <img
-          src="./src/assets/pizza.jpg"
+          src={pizza}
           alt="food"
           className="absolute bg-cover w-full object-cover h-screen z-1 opacity-80 brightness-75"
         />

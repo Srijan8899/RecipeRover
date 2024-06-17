@@ -7,7 +7,9 @@ import { Toaster } from 'react-hot-toast';
 import LocomotiveScroll from 'locomotive-scroll';
 
 function Layout() {
-  const locomotiveScroll = new LocomotiveScroll();
+  const locomotiveScroll = new LocomotiveScroll({
+    smooth: true,
+  });
   return (
     <>
     <UserContextProvider>

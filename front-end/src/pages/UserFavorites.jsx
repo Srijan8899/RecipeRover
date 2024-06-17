@@ -39,7 +39,7 @@ function UserFavorites() {
 else{
     useEffect(() => {
         const fetchBooks = async () => {
-          const response = await fetch("http://localhost:3000/user/books", {
+          const response = await fetch(`${apiURL}/user/books`, {
             method: "GET",
           });
           const data = await response.json();

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { UserContext } from '../components/Context/UserContext';
 import toast from 'react-hot-toast';
+import spaghetti from '../assets/spaghetti.jpg'
 
 function Login() {
   const {loggedIn } = useContext(UserContext);
@@ -46,7 +47,7 @@ function Login() {
   return (
     <div className="w-full h-screen flex font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]">
         <div className="relative image w-1/2 flex flex-col">
-            <img src="./src/assets/spaghetti.jpg" alt="food" className="absolute bg-cover w-full object-cover h-screen z-1 opacity-80 brightness-90"/>
+            <img src={spaghetti} alt="food" className="absolute bg-cover w-full object-cover h-screen z-1 opacity-80 brightness-90"/>
             <div className="flex items-center justify-center w-full h-full">
             <div className="uppercase absolute top-40 text-[13vw] font-light "> New User?</div>
             <Link to="/signup" className="absolute flex items-center justify-center pt-24">

@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import tableImage from '../../assets/table.jpg' // Adjust the path based on your project structure
 
 function JoinUs() {
   return (
-    <div data-scroll data-scroll-section data-scroll-speed="-.03" className="w-full h-screen overflow-hidden bg-cover brightness-90" style={{ backgroundImage: `url(${tableImage})` }}>
+    <div data-scroll data-scroll-section data-scroll-speed="-.03" className="w-full h-screen overflow-hidden bg-cover brightness-90" style={{ backgroundImage: `url(https://res.cloudinary.com/recipe-rover/image/upload/v1718800654/assets/table_rmqyku.jpg)` }}>
         <div className="top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] relative h-[80vh] w-[90vw] md:w-[70vw] lg:w-[60vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl"> 
             <div className="inset-0 relative flex flex-col items-center p-4 md:p-8 lg:p-12">
                 <h1 className="uppercase text-[8vw] md:text-[10vh] lg:text-[14vh] flex items-end justify-center mt-16 md:mt-28 z-3 font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-none -mb-[.6vw] text-center">

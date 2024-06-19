@@ -13,67 +13,66 @@ import Books from "../../assets/card/Books.png"
 import Favorites from "../../assets/card/Favorites.png"
 import Upload from "../../assets/card/Uploads.png"
 import User from "../../assets/card/User.png"
-import fridge from '../../assets/fridge.jpg'
 
 function Explore() {
   const Categories = [
     { 
-        image: Vegeterian,
+        image: "https://res.cloudinary.com/recipe-rover/image/upload/v1718801710/assets/cards/Vegeterian_dwp4oe.png",
         name:"Vegeterian",
         link: "/categories/diet/lacto-vegeterian",
     },
     { 
-        image:NonVeg,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801707/assets/cards/NonVeg_yzjpmo.png",
         name:"Non-Vegeterian",
         link: "/categories/diet/primal",
     },
     { 
-        image:Vegan,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801707/assets/cards/Vegan_apcp0j.png",
         name:"Vegan",
         link: "/categories/diet/vegan",
     },
     { 
-        image:Cuisines,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801706/assets/cards/Cuisines_xwbwly.png",
         name:"Cuisines",
         link: "/categories/cuisines",
     },
     { 
-        image:Salad,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801705/assets/cards/Salad_sp6if2.png",
         name:"Salads",
         link: "/categories/type/salad",
     },
     { 
-        image:Beverages,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801701/assets/cards/Beverages_jgngef.png",
         name:"Beverages",
         link: "/categories/type/beverage",
     },
     { 
-        image:Soups,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801703/assets/cards/Soups_ncvccx.png",
         name:"Soups",
         link: "/categories/type/soup",
     },
     { 
-        image:Desserts,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801702/assets/cards/Desserts_rk78ia.png",
         name:"Desserts",
         link: "/categories/type/desserts",
     },
     { 
-        image:Books,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718802198/assets/cards/books_js94de.jpg",
         name:"Recipe Books",
         link: "/community/user/books",
     },
     { 
-        image:User,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801708/assets/cards/User_ohqn80.png",
         name:"Community",
         link: "/user/viewrecipe",
     },
     { 
-        image:Upload,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801704/assets/cards/Uploads_ztdprm.png",
         name:"Upload Your's",
         link: "/user/postrecipe",
     },
     { 
-        image:Favorites,
+        image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801701/assets/cards/Favorites_dmazqm.png",
         name:"Your Favorites",
         link: "/community/user/favorites",
     },
@@ -95,7 +94,7 @@ function Explore() {
             </div>
         </div>
         <div className="relative image lg:w-[40vw] w-full flex flex-col overflow-hidden mt-8 lg:mt-0">
-            <img src={fridge} alt="food" className="absolute w-full h-full z-1 opacity-60 brightness-90" loading="lazy" />
+            <img src="https://res.cloudinary.com/recipe-rover/image/upload/v1718800649/assets/fridge_brr4cq.jpg" alt="food" className="absolute w-full h-full z-1 opacity-60 brightness-90" loading="lazy" />
             <div className="flex items-center justify-center w-full h-full">
                 <div className="uppercase absolute top-20 lg:top-40 ml-2 lg:ml-6 text-[10vw] lg:text-[15vw] leading-none font-light font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]"> What's in your fridge? </div>
             </div>

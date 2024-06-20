@@ -23,7 +23,7 @@ function Explore() {
     },
     { 
         image:"https://res.cloudinary.com/recipe-rover/image/upload/v1718801707/assets/cards/NonVeg_yzjpmo.png",
-        name:"Non-Vegeterian",
+        name:"Non-Veg",
         link: "/categories/diet/primal",
     },
     { 

@@ -63,7 +63,7 @@ function Signup() {
               Welcome to our website
             </p>
             <div className="flex gap-4">
-              <div className="flex items-center border-2 mb-6 py-1 px-3 rounded-2xl">
+              <div className="flex items-center border-2 mb-6 py-1 px-2 rounded-2xl">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -94,7 +94,7 @@ function Signup() {
                   </g>
                 </svg>
                 <input
-                  className="bg-[#F8FAE5] text-xl pl-2 w-full focus:ring-[#F8FAE5] border-none"
+                  className="bg-[#F8FAE5] text-xl pl-1 w-full focus:ring-[#F8FAE5] border-none"
                   type="text"
                   id="firstName"
                   name="firstName"
@@ -102,7 +102,7 @@ function Signup() {
                   placeholder="First Name"
                 />
               </div>
-              <div className="flex items-center border-2 mb-6 py-1 px-3 rounded-2xl">
+              <div className="flex items-center border-2 mb-6 py-1 px-2 rounded-2xl">
               <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -133,7 +133,7 @@ function Signup() {
                   </g>
                 </svg>
                 <input
-                  className="bg-[#F8FAE5] text-xl pl-2 w-full focus:ring-[#F8FAE5] border-none"
+                  className="bg-[#F8FAE5] text-xl pl-1 w-full focus:ring-[#F8FAE5] border-none"
                   type="text"
                   id="lastName"
                   name="lastName"

@@ -97,7 +97,7 @@ function RecipeDisplay() {
 
   return (
     <div className="w-full min-h-screen text-[#F8FAE5] bg-zinc-900">
-      <h1 className="uppercase text-[15vh] flex items-end justify-center pt-[17vh] font-['Founders_Grotesk_X_Condensed'] font-light leading-none ">
+      <h1 className="uppercase text-[9vh] md:text-[15vh] flex items-end justify-center pt-[17vh] font-['Founders_Grotesk_X_Condensed'] font-light leading-none ">
       {type !== "viewrecipe" ? (category === "primal" ? "Non-Vegetarian" : category) : "User Recipes"}
       </h1>
       {type !== "viewrecipe" &&

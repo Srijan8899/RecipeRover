@@ -26,7 +26,7 @@ function Search({ currentpage }) {
               onChange={(e) => setSearch(e.target.value)}
               value={search}
               id="search"
-              className="bg-[#F8FAE5] text-xl w-[35vw] pl-2 focus:ring-[#F8FAE5] border-none focus:outline-none"
+              className="bg-[#F8FAE5] text-md md:text-xl w-[50vw] md:w-[35vw] pl-2 focus:ring-[#F8FAE5] border-none focus:outline-none"
               type="text"
               name="search"
               placeholder={placeholderText}
@@ -34,9 +34,9 @@ function Search({ currentpage }) {
             <button
               type="submit"
               onClick={submitHandler}
-              className=" input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700"
+              className=" input-group-text flex items-center whitespace-nowrap rounded px-1 md:px-3 py-1.5 text-center text-base font-normal text-neutral-700"
             >
-              <FaSearch size={35} />
+              <FaSearch className="text-xl md:text-2xl" />
             </button>
             </form>
           </div>

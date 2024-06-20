@@ -46,7 +46,7 @@ function Login() {
   
   return (
     <div className="w-full h-screen flex font-['Founders_Grotesk_X_Condensed'] text-[#F8FAE5]">
-        <div className="relative image w-1/2 flex flex-col">
+        <div className="relative image md:w-1/2 md:flex md:flex-col hidden">
             <img src={spaghetti} alt="food" className="absolute bg-cover w-full object-cover h-screen z-1 opacity-80 brightness-90"/>
             <div className="flex items-center justify-center w-full h-full">
             <div className="uppercase absolute top-40 text-[13vw] font-light "> New User?</div>
@@ -71,6 +71,7 @@ function Login() {
                 <input className="pl-2 w-full border-none bg-[#F8FAE5] text-[#43766C] focus:ring-[#F8FAE5] text-xl" type="password" name="password" id="password" onChange={handleChange} placeholder="Password" />
               </div>
               <button type="submit" className="block w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-white font-semibold text-2xl ">Login</button>
+              <p className="text-[#43766C] font-['Neue_Montreal'] text-xl md:hidden">Don't have an account? <Link to="/signup" className="text-[#39665d] underline font-['Neue_Montreal'] font-bold">Signup</Link></p>
               {/* <button type="submit"  className="flex justify-center w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-white font-semibold text-2xl " onClick={loginwithgoogle} > <FcGoogle size={30} className="mr-4"  /> Login with google </button> */}
               </form>
             </div>

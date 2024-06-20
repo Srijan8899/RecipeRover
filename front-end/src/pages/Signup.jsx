@@ -216,6 +216,7 @@ function Signup() {
             >
               Signup
             </button>
+            
             {/* <button
               type="submit"
               className="flex items-center justify-center w-full bg-[#43766C] my-5 py-2 rounded-2xl hover:bg-[#39665d] hover:-translate-y-1 transition-all duration-500 text-[#F8FAE5] font-light text-2xl "
@@ -223,10 +224,11 @@ function Signup() {
               {" "}
               <FcGoogle size={30} className="mr-4" /> Signup with google{" "}
             </button> */}
+            <p className="text-[#43766C] font-['Neue_Montreal'] text-xl md:hidden text-center mt-5">Existing User? <Link to="/login" className="text-[#39665d] underline font-['Neue_Montreal'] font-bold">Login</Link></p>
           </form>
         </div>
       </div>
-      <div className="relative image w-1/2 flex flex-col">
+      <div className="relative image md:w-1/2 md:flex md:flex-col hidden">
         <img
           src={pizza}
           alt="food"
@@ -234,7 +236,6 @@ function Signup() {
         />
         <div className="flex items-center justify-center w-full h-full text-[#F8FAE5]">
           <div className="uppercase absolute top-48 text-[10vw] font-light ">
-            {" "}
             Existing User?
           </div>
           <Link
@@ -243,7 +244,7 @@ function Signup() {
           >
             <button className="absolute flex items-center justify-center border rounded-2xl px-10 pb-6 text-4xl pt-6 leading-[.6] bg-[#43766C] uppercase tracking-tight font-['Neue_Montreal']">
               Login
-            </button>{" "}
+            </button>
           </Link>
         </div>
       </div>

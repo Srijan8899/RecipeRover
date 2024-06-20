@@ -18,7 +18,7 @@ function Footer() {
       <ul className="flex justify-center mt-5 space-x-5">
         <li>
           <a
-            href="https://www.linkedin.com/in/shivani-pathak-48a4b3287/"
+            href="https://www.linkedin.com/in/shreyansh--vyas/"
             target="_blank"
             className=" hover:text-gray-300"
           >

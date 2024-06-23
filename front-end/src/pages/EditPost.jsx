@@ -10,7 +10,6 @@ function EditPost() {
   const navigate = useNavigate();
   const apiURL = import.meta.env.VITE_SERVER_URL;
 
-
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [ingredients, setIngredients] = useState("");
@@ -33,17 +32,14 @@ function EditPost() {
       data.append("summary", summary);
       data.append("ingredients", ingredients);
       data.append("instructions", instructions);
-      const response = await fetch(
-        `${apiURL}/recipe/update/${id}`,
-        {
-          method: "PUT",
-          body: data,
-          credentials: "include",
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
+      const response = await fetch(`${apiURL}/recipe/update/${id}`, {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
         },
-      );
+      });
       if (response.ok) {
         response.json(data);
         navigate("/user/viewrecipe");
@@ -60,23 +56,22 @@ function EditPost() {
 
   useEffect(() => {
     const previousData = async () => {
-        const response = await fetch(`${apiURL}/recipe/get/${id}`, {
-          method: "GET",
-          credentials: "include",
-        });
-        const data = await response.json();
-        setTitle(data.title);
-        setSummary(data.summary);
-        setIngredients(data.ingredients);
-        setInstructions(data.instructions);
-  
-      };
-      previousData();
+      const response = await fetch(`${apiURL}/recipe/get/${id}`, {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = await response.json();
+      setTitle(data.title);
+      setSummary(data.summary);
+      setIngredients(data.ingredients);
+      setInstructions(data.instructions);
+    };
+    previousData();
   }, []);
 
   return (
     <div className="w-full flex flex-col bg-gradient-to-br from-slate-500 to-slate-900 text-[#F8FAE5]">
-      <div className="relative my-32 mx-auto w-[80vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl">
+      <div className="relative my-32 mx-auto w-[80vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl md:p-0 p-6">
         <div className="pt-20 max-w-3xl mx-auto ">
           <h1 className="text-center text-3xl my-5 font-semibold">
             Update your Recipe
@@ -90,9 +85,7 @@ function EditPost() {
                 id="title"
                 className="border border-gray-300 p-2 bg-transparent rounded-md w-full font-bold"
                 value={title}
-                onChange={(ev) =>
-                  setTitle( ev.target.value)
-                }
+                onChange={(ev) => setTitle(ev.target.value)}
               />
             </div>
             <div className="flex flex-col gap-4 sm:flex-row justify-between">
@@ -104,60 +97,58 @@ function EditPost() {
                 id="summary"
                 className="border border-gray-300 bg-transparent p-2 rounded-md w-full"
                 value={summary}
-                onChange={(ev) =>
-                  setSummary(ev.target.value)
-                }
+                onChange={(ev) => setSummary(ev.target.value)}
               />
             </div>
-            <div className="flex gap-4 items-center justify-between bg-transparent text-white border-gray-300 p-3">
+            <div className="flex flex-col gap-4 sm:flex-row items-center justify-between bg-transparent text-white border-gray-300 p-3">
               <FileInput
                 type="file"
                 id="file-upload"
                 accept="image/*"
-                onChange={(ev) =>
-                  setImage( ev.target.files[0] )
-                }
+                onChange={(ev) => setImage(ev.target.files[0])}
               />
-              <Label >While Updation you don't have to neccesarily upload image</Label>
+              <Label>
+                While Updation you don't have to neccesarily upload image
+              </Label>
             </div>
-            <h2 className="mt-10 text-[20px]">
+            <h2 className="md:mt-10 mt-3 text-[16px] md:text-[20px]">
               {" "}
               Enter Ingredients line by line(Use Enter after every ingredient
               for easy understanding).
             </h2>
             <ReactQuill
-          theme='snow'
-          placeholder='Write something...'
-          className='h-44 mb-12'
-          required
-          value={ingredients}
-          onChange={newValue =>setIngredients(newValue)}
-          //onChange={ev=>setContent((prev)=>({...prev, content:ev}))}
-        //   onChange={(value) => {
-        //     setFormData({ ...formData, content: value });
-        //   }}
-        />
-            <h2 className="mt-10 text-[20px]">
+              theme="snow"
+              placeholder="Write something..."
+              className="h-44 mb-12"
+              required
+              value={ingredients}
+              onChange={(newValue) => setIngredients(newValue)}
+              //onChange={ev=>setContent((prev)=>({...prev, content:ev}))}
+              //   onChange={(value) => {
+              //     setFormData({ ...formData, content: value });
+              //   }}
+            />
+            <h2 className="md:mt-8 mt-12 text-[16px] md:text-[20px]">
               {" "}
               Enter Instructions line by line(Use Enter after every instruction
               for easy understanding).
             </h2>
             <ReactQuill
-          theme='snow'
-          placeholder='Write something...'
-          className='h-44 mb-12'
-          required
-          value={instructions}
-          onChange={newValue =>setInstructions(newValue)}
-          //onChange={ev=>setContent((prev)=>({...prev, content:ev}))}
-        //   onChange={(value) => {
-        //     setFormData({ ...formData, content: value });
-        //   }}
-        />
+              theme="snow"
+              placeholder="Write something..."
+              className="h-44 mb-12"
+              required
+              value={instructions}
+              onChange={(newValue) => setInstructions(newValue)}
+              //onChange={ev=>setContent((prev)=>({...prev, content:ev}))}
+              //   onChange={(value) => {
+              //     setFormData({ ...formData, content: value });
+              //   }}
+            />
 
             <button
               type="submit"
-              className="border bg-gradient-to-r from-teal-200 to-lime-300 hover:bg-gradient-to-l text-black mb-10 p-3 rounded-md"
+              className="border bg-gradient-to-r from-teal-200 to-lime-300 hover:bg-gradient-to-l text-black mt-16 md:mt-0 mb-10 p-3 rounded-md"
             >
               Update
             </button>

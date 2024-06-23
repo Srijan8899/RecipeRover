@@ -266,15 +266,15 @@ function UserRecipe() {
       </div>
 
       {userInfo !== null ? (
-        <div className="relative mb-10 mx-auto bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl flex flex-col md:flex-row gap-4 md:gap-8 p-5 text-2xl md:text-3xl">
+        <div className="relative mb-10 mx-auto bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl flex flex-row gap-4 md:gap-8 p-5 text-2xl md:text-3xl">
           {likesId?.includes(userInfo && userInfo.userId) ? (
-            <button onClick={removeLike} className="mx-auto">
-              <MdFavorite size={50} className="mx-auto my-[.4rem]" />
+            <button onClick={removeLike} className="mx-auto md:mt-0 -mt-1">
+              <MdFavorite size={50} className="mx-auto my-[.1rem]" />
               Like
             </button>
           ) : (
             <button onClick={addLike} className="mx-auto">
-              <MdFavoriteBorder size={50} className="mx-auto my-[.4rem]" />
+              <MdFavoriteBorder size={50} className="mx-auto my-[.1rem]" />
               Like
             </button>
           )}

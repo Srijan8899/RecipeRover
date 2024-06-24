@@ -51,9 +51,11 @@ const Header = () => {
       {/* Default Navbar */}
       <nav style={{ display: isHidden ? 'none' : 'block' }}>
         <div className="fixed z-[5] w-full px-3 md:px-12 flex justify-between items-center backdrop-blur-[3px] text-[#F8FAE5]">
+          <Link to="/">
           <div className="logo flex gap-5">
             <img src={Logo} alt="logo" className="bg-transparent w-12 md:w-20 py-3" />
           </div>
+          </Link>
           <div className="hidden md:flex links gap-5 py-10 ml-56">
             {links.map(({ name, path }, index) => (
               <NavLink to={path} key={index} className={({ isActive }) => `text-lg font-light font-['Neue_Montreal'] ${isActive ? "underline" : ""}`}>

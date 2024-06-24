@@ -1,20 +1,20 @@
 import React from "react";
 import Logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <div className="text-center py-5 bg-[#43766C] text-[#F8FAE5]">
-      <a
-        href="#"
+      
+      <Link to="/"
         className="flex items-center justify-center mb-5 text-2xl font-semibold "
       >
         <img src={Logo} className="h-12 mr-3 sm:h-9" alt="Logo" />
         Recipe Rover
-      </a>
+      </Link>
       <span className="block text-sm text-center">
         © 2024 RECIPE ROVER™. Built from scratch
       </span>
-
       <ul className="flex justify-center mt-5 space-x-5">
         <li>
           <a

@@ -67,9 +67,9 @@ function Cuisines() {
           <h1 className="uppercase text-[9vh] md:text-[15vh] font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-none mt-10 mb-10 flex justify-center">
             Cuisines
           </h1>
-          <div className="w-full px-10 py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-auto">
+          <div className="w-full py-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto">
             {Categories.map(({ image, title, link }, index) => (
-              <Cards key={index} image={image} name={title} link={link} />
+              <Cards key={index} image={image} name={title} link={link} className="mb-2" />
             ))}
           </div>
         </div>

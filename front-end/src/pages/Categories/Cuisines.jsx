@@ -57,18 +57,23 @@ function Cuisines() {
     ]
 
   return (
-    <div className="w-full h-screen overflow-hidden">
-        <img src={Background} alt="" className="absolute opacity-95 brightness-75 object-cover w-full h-full"/>
-        <div className="top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] relative h-[80vh] w-[60vw] bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl"> 
-        <div className="inset-0 relative flex flex-col ">
-        <h1 className=" uppercase text-[15vh] flex items-end justify-center mt-10 z-3 font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-none -mb-[.6vw]"> Cuisines </h1>
-        <div className="mx-12 grid my-2 grid-cols-3 gap-1 lg:grid-cols-4 ">
-        {Categories.map(({image, title, link},index) => (
-            <Cards key={index} image={image} name={title} link={link}/>
-        ))
-        }   
+    <div className="relative w-full min-h-screen overflow-hidden">
+      <img src={Background} alt="Background" className="absolute inset-0 w-full h-full object-cover opacity-95 brightness-75"/>
+
+      <div className="relative flex flex-col items-center justify-center min-h-screen py-10">
+        
+        
+        <div className="w-full max-w-[80vw] md:max-w-[60vw] px-5 py-5 mt-20 mx-auto bg-transparent rounded-2xl backdrop-brightness-75 backdrop-blur-sm shadow-2xl">
+        <h1 className="uppercase text-[9vh] md:text-[15vh] font-['Founders_Grotesk_X_Condensed'] font-light text-[#F8FAE5] leading-none mb-10 flex justify-center">
+          Cuisines
+        </h1>
+          <div className="w-full px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mx-auto">
+            {Categories.map(({ image, title, link }, index) => (
+              <Cards key={index} image={image} name={title} link={link} />
+            ))}
+          </div>
         </div>
-        </div> </div>
+      </div>
     </div>
   )
 }
